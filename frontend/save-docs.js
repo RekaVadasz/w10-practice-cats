@@ -3,21 +3,19 @@ setInterval(save, 3000);
 //post request küldése egy adott URL-re
 
 async function save() {
-const textarea = document.querySelector("#doc-text");
-const docText = textarea.value;
+    const textarea = document.querySelector("#doc-text");
+    const docText = textarea.value;
 
-const saveText = document.querySelector("#save-in-progress");
-saveText.classList.remove("hidden")
+    const saveText = document.querySelector("#save-in-progress");
+    saveText.classList.remove("hidden")
+
+    await fetch("http://127.0.0.1:9000/", { //ide küldenénk adatot, ha ez egy backend endpoint lenne
+        method: "POST", 
+        body: docText
+    })//.then(function () { kód amit szeretnénk, hogy történjen, ha végbement a fetch}) 
 
 
-await fetch("http://127.0.0.1:9000/", {
-    method: "POST", 
-    body: docText
-});
-
-
+    saveText.classList.add("hidden")
 }
 
 
-
-saveText.classList.add("hidden")
